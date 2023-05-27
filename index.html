@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>球数BSO</title>
+
+<style>
+html{
+  height: 100%;
+  width: 100%;
+}
+body{
+  background-color: black;
+  color: white;
+  font-family: monospace;
+  display: flex;
+  gap: 8px;
+  margin: 8px auto;
+  height: 100%;
+  width: 100%;
+}
+button{
+  all: unset;
+  cursor: pointer;
+  margin: 8px;
+  min-width: 60px;
+  height: 10vh;
+  text-align: center;
+  color: white;
+  font-size: 1.6rem;
+  border-radius: 8px;
+  box-shadow: 0 2px #444;
+}
+button:active{
+  transform: translateY(2px);
+}
+h1{
+  margin: 0;
+  font-size: 14rem;
+  font-weight: normal;
+}
+h2{
+  margin: 16px;
+  font-size: 6rem;
+}
+.count,.bso{
+  border: 4px double #aaa;
+  padding: 16px 8px;
+}
+.count{
+  flex: 4;
+}
+.bso{
+  flex: 6;
+  min-width: 600px;
+}
+.display-row{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  height: 80%;
+  box-sizing: border-box;
+  padding: 20% 0 0;
+}
+.oparation-row{
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100%;
+  height: 20%;
+}
+.bso-row{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 33%;
+}
+#b,#s,#o{
+  width: 11vw;
+  height: 25vh;
+  border-radius: 50%;
+}
+#b{
+  background: lightseagreen;
+}
+#s{
+  background: yellow;
+}
+#o{
+  background: red;
+}
+.inactive{
+  opacity: 0.1;
+}
+#reset{
+  background: #666;
+}
+#up,#down{
+  background: #999;
+}
+#up{
+  min-width: 30%;
+  height: 80%;
+  font-size: 4rem;
+}
+</style>
+</head>
+
+<body>
+<section class="count">
+  <div class="display-row">
+   <h1 id="num"></h1>
+   <button id="reset">RESET</button>
+  </div>
+  <div class="oparation-row">
+    <button id="down">DOWN</button>
+    <button id="up">UP</button>
+  </div>
+</section>
+  
+<section class="bso">
+  <div class="bso-row">
+   <button id="reset">RESET</button>
+   <h2>B</h2>
+   <div>
+     <button id="b" class="inactive"></button>
+     <button id="b" class="inactive"></button>
+     <button id="b" class="inactive"></button>
+   </div>
+  </div>
+
+  <div class="bso-row">
+   <button id="reset">RESET</button>
+   <h2>S</h2>
+   <div>
+    <button id="s" class="inactive"></button>
+    <button id="s" class="inactive"></button>
+   </div>
+  </div>
+    
+ <div class="bso-row">
+  <button id="reset">RESET</button>
+  <h2>O</h2>
+  <div>
+   <button id="o" class="inactive"></button>
+   <button id="o" class="inactive"></button>
+  </div>
+ </div>
+</section>
+
+<script>
+    'use strict';
+  const num= document.getElementById('num');
+  const up= document.getElementById('up');
+  const down= document.getElementById('down');
+  const resets= document.querySelectorAll('#reset');
+  let i= 0;
+  num.textContent= i;
+  up.addEventListener('click',()=>{
+    i ++ ;
+    num.textContent= i;
+  })
+  down.addEventListener('click',()=>{
+    if(i >0){
+    i -- ;
+    num.textContent= i;
+  }})
+  resets[0].addEventListener('click',()=>{
+    i= 0;
+    num.textContent= i;
+  })
+ 
+  const b= document.querySelectorAll('#b');
+  const s= document.querySelectorAll('#s');
+  const o= document.querySelectorAll('#o');
+  b.forEach((item)=>{
+    item.addEventListener('click',()=>{
+      item.classList.toggle('inactive');
+    })})
+  s.forEach((item)=>{
+    item.addEventListener('click',()=>{
+      item.classList.toggle('inactive');
+    })})
+  o.forEach((item)=>{
+    item.addEventListener('click',()=>{
+      item.classList.toggle('inactive');
+    })})
+
+  resets[1].addEventListener('click',()=>{
+    b.forEach((item)=>{
+     item.classList.add('inactive');
+    })
+  })
+  resets[2].addEventListener('click',()=>{
+    s.forEach((item)=>{
+     item.classList.add('inactive');
+    })
+  })
+  resets[3].addEventListener('click',()=>{
+    o.forEach((item)=>{
+     item.classList.add('inactive');
+    })
+  })  
+</script>
+</body>
+</html>
